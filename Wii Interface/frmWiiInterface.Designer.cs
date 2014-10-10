@@ -30,29 +30,37 @@
         {
             this.clbWiimote = new System.Windows.Forms.CheckedListBox();
             this.gbWiimote = new System.Windows.Forms.GroupBox();
+            this.gbWiimoteAccelerometers = new System.Windows.Forms.GroupBox();
+            this.lblWiimoteZ = new System.Windows.Forms.Label();
+            this.lblWiimoteY = new System.Windows.Forms.Label();
+            this.lblWiimoteX = new System.Windows.Forms.Label();
             this.gbNunchuck = new System.Windows.Forms.GroupBox();
+            this.gbJoysticks = new System.Windows.Forms.GroupBox();
+            this.lblNunJoyY = new System.Windows.Forms.Label();
+            this.lblNunJoyX = new System.Windows.Forms.Label();
+            this.gbNunchuckAccelerometers = new System.Windows.Forms.GroupBox();
+            this.lblNunchuckZ = new System.Windows.Forms.Label();
+            this.lblNunchuckY = new System.Windows.Forms.Label();
+            this.lblNunchuckX = new System.Windows.Forms.Label();
             this.clbNunchuck = new System.Windows.Forms.CheckedListBox();
             this.cbEnabled = new System.Windows.Forms.CheckBox();
-            this.gbWiimoteAccelerometers = new System.Windows.Forms.GroupBox();
-            this.gbNunchuckAccelerometers = new System.Windows.Forms.GroupBox();
-            this.gbJoysticks = new System.Windows.Forms.GroupBox();
-            this.lblWiimoteAccelerometers = new System.Windows.Forms.Label();
-            this.lblNunchuckAccelerometers = new System.Windows.Forms.Label();
-            this.lblJoystick = new System.Windows.Forms.Label();
             this.gbDevicePath = new System.Windows.Forms.GroupBox();
             this.txtDevicePath = new System.Windows.Forms.TextBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.tblblBattery = new System.Windows.Forms.ToolStripStatusLabel();
             this.tbpbBattery = new System.Windows.Forms.ToolStripProgressBar();
             this.tblblBatteryPercent = new System.Windows.Forms.ToolStripStatusLabel();
+            this.menuDecimalPlaces = new System.Windows.Forms.ToolStripComboBox();
             this.gbWiimote.SuspendLayout();
-            this.gbNunchuck.SuspendLayout();
             this.gbWiimoteAccelerometers.SuspendLayout();
-            this.gbNunchuckAccelerometers.SuspendLayout();
+            this.gbNunchuck.SuspendLayout();
             this.gbJoysticks.SuspendLayout();
+            this.gbNunchuckAccelerometers.SuspendLayout();
             this.gbDevicePath.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -89,6 +97,42 @@
             this.gbWiimote.TabStop = false;
             this.gbWiimote.Text = "Wiimote";
             // 
+            // gbWiimoteAccelerometers
+            // 
+            this.gbWiimoteAccelerometers.Controls.Add(this.lblWiimoteZ);
+            this.gbWiimoteAccelerometers.Controls.Add(this.lblWiimoteY);
+            this.gbWiimoteAccelerometers.Controls.Add(this.lblWiimoteX);
+            this.gbWiimoteAccelerometers.Location = new System.Drawing.Point(100, 14);
+            this.gbWiimoteAccelerometers.Name = "gbWiimoteAccelerometers";
+            this.gbWiimoteAccelerometers.Size = new System.Drawing.Size(116, 56);
+            this.gbWiimoteAccelerometers.TabIndex = 1;
+            this.gbWiimoteAccelerometers.TabStop = false;
+            this.gbWiimoteAccelerometers.Text = "Accelerometers";
+            // 
+            // lblWiimoteZ
+            // 
+            this.lblWiimoteZ.Location = new System.Drawing.Point(6, 42);
+            this.lblWiimoteZ.Name = "lblWiimoteZ";
+            this.lblWiimoteZ.Size = new System.Drawing.Size(100, 13);
+            this.lblWiimoteZ.TabIndex = 2;
+            this.lblWiimoteZ.Text = "Z";
+            // 
+            // lblWiimoteY
+            // 
+            this.lblWiimoteY.Location = new System.Drawing.Point(6, 29);
+            this.lblWiimoteY.Name = "lblWiimoteY";
+            this.lblWiimoteY.Size = new System.Drawing.Size(100, 13);
+            this.lblWiimoteY.TabIndex = 1;
+            this.lblWiimoteY.Text = "Y";
+            // 
+            // lblWiimoteX
+            // 
+            this.lblWiimoteX.Location = new System.Drawing.Point(6, 16);
+            this.lblWiimoteX.Name = "lblWiimoteX";
+            this.lblWiimoteX.Size = new System.Drawing.Size(100, 13);
+            this.lblWiimoteX.TabIndex = 0;
+            this.lblWiimoteX.Text = "X";
+            // 
             // gbNunchuck
             // 
             this.gbNunchuck.Controls.Add(this.gbJoysticks);
@@ -97,10 +141,73 @@
             this.gbNunchuck.Controls.Add(this.cbEnabled);
             this.gbNunchuck.Location = new System.Drawing.Point(14, 227);
             this.gbNunchuck.Name = "gbNunchuck";
-            this.gbNunchuck.Size = new System.Drawing.Size(225, 153);
+            this.gbNunchuck.Size = new System.Drawing.Size(225, 136);
             this.gbNunchuck.TabIndex = 2;
             this.gbNunchuck.TabStop = false;
             this.gbNunchuck.Text = "Nunchuck";
+            // 
+            // gbJoysticks
+            // 
+            this.gbJoysticks.Controls.Add(this.lblNunJoyY);
+            this.gbJoysticks.Controls.Add(this.lblNunJoyX);
+            this.gbJoysticks.Location = new System.Drawing.Point(100, 82);
+            this.gbJoysticks.Name = "gbJoysticks";
+            this.gbJoysticks.Size = new System.Drawing.Size(115, 44);
+            this.gbJoysticks.TabIndex = 4;
+            this.gbJoysticks.TabStop = false;
+            this.gbJoysticks.Text = "Joysticks";
+            // 
+            // lblNunJoyY
+            // 
+            this.lblNunJoyY.Location = new System.Drawing.Point(6, 29);
+            this.lblNunJoyY.Name = "lblNunJoyY";
+            this.lblNunJoyY.Size = new System.Drawing.Size(100, 13);
+            this.lblNunJoyY.TabIndex = 6;
+            this.lblNunJoyY.Text = "Y";
+            // 
+            // lblNunJoyX
+            // 
+            this.lblNunJoyX.Location = new System.Drawing.Point(6, 16);
+            this.lblNunJoyX.Name = "lblNunJoyX";
+            this.lblNunJoyX.Size = new System.Drawing.Size(100, 13);
+            this.lblNunJoyX.TabIndex = 5;
+            this.lblNunJoyX.Text = "X";
+            // 
+            // gbNunchuckAccelerometers
+            // 
+            this.gbNunchuckAccelerometers.Controls.Add(this.lblNunchuckZ);
+            this.gbNunchuckAccelerometers.Controls.Add(this.lblNunchuckY);
+            this.gbNunchuckAccelerometers.Controls.Add(this.lblNunchuckX);
+            this.gbNunchuckAccelerometers.Location = new System.Drawing.Point(100, 19);
+            this.gbNunchuckAccelerometers.Name = "gbNunchuckAccelerometers";
+            this.gbNunchuckAccelerometers.Size = new System.Drawing.Size(116, 57);
+            this.gbNunchuckAccelerometers.TabIndex = 2;
+            this.gbNunchuckAccelerometers.TabStop = false;
+            this.gbNunchuckAccelerometers.Text = "Accelerometers";
+            // 
+            // lblNunchuckZ
+            // 
+            this.lblNunchuckZ.Location = new System.Drawing.Point(6, 42);
+            this.lblNunchuckZ.Name = "lblNunchuckZ";
+            this.lblNunchuckZ.Size = new System.Drawing.Size(100, 13);
+            this.lblNunchuckZ.TabIndex = 5;
+            this.lblNunchuckZ.Text = "Z";
+            // 
+            // lblNunchuckY
+            // 
+            this.lblNunchuckY.Location = new System.Drawing.Point(6, 29);
+            this.lblNunchuckY.Name = "lblNunchuckY";
+            this.lblNunchuckY.Size = new System.Drawing.Size(100, 13);
+            this.lblNunchuckY.TabIndex = 4;
+            this.lblNunchuckY.Text = "Y";
+            // 
+            // lblNunchuckX
+            // 
+            this.lblNunchuckX.Location = new System.Drawing.Point(6, 16);
+            this.lblNunchuckX.Name = "lblNunchuckX";
+            this.lblNunchuckX.Size = new System.Drawing.Size(100, 13);
+            this.lblNunchuckX.TabIndex = 3;
+            this.lblNunchuckX.Text = "X";
             // 
             // clbNunchuck
             // 
@@ -124,64 +231,10 @@
             this.cbEnabled.Text = "Enabled";
             this.cbEnabled.UseVisualStyleBackColor = true;
             // 
-            // gbWiimoteAccelerometers
-            // 
-            this.gbWiimoteAccelerometers.Controls.Add(this.lblWiimoteAccelerometers);
-            this.gbWiimoteAccelerometers.Location = new System.Drawing.Point(100, 14);
-            this.gbWiimoteAccelerometers.Name = "gbWiimoteAccelerometers";
-            this.gbWiimoteAccelerometers.Size = new System.Drawing.Size(116, 174);
-            this.gbWiimoteAccelerometers.TabIndex = 1;
-            this.gbWiimoteAccelerometers.TabStop = false;
-            this.gbWiimoteAccelerometers.Text = "Accelerometers";
-            // 
-            // gbNunchuckAccelerometers
-            // 
-            this.gbNunchuckAccelerometers.Controls.Add(this.lblNunchuckAccelerometers);
-            this.gbNunchuckAccelerometers.Location = new System.Drawing.Point(100, 19);
-            this.gbNunchuckAccelerometers.Name = "gbNunchuckAccelerometers";
-            this.gbNunchuckAccelerometers.Size = new System.Drawing.Size(116, 65);
-            this.gbNunchuckAccelerometers.TabIndex = 2;
-            this.gbNunchuckAccelerometers.TabStop = false;
-            this.gbNunchuckAccelerometers.Text = "Accelerometers";
-            // 
-            // gbJoysticks
-            // 
-            this.gbJoysticks.Controls.Add(this.lblJoystick);
-            this.gbJoysticks.Location = new System.Drawing.Point(101, 90);
-            this.gbJoysticks.Name = "gbJoysticks";
-            this.gbJoysticks.Size = new System.Drawing.Size(115, 54);
-            this.gbJoysticks.TabIndex = 4;
-            this.gbJoysticks.TabStop = false;
-            this.gbJoysticks.Text = "Joysticks";
-            // 
-            // lblWiimoteAccelerometers
-            // 
-            this.lblWiimoteAccelerometers.Location = new System.Drawing.Point(6, 16);
-            this.lblWiimoteAccelerometers.Name = "lblWiimoteAccelerometers";
-            this.lblWiimoteAccelerometers.Size = new System.Drawing.Size(100, 155);
-            this.lblWiimoteAccelerometers.TabIndex = 0;
-            this.lblWiimoteAccelerometers.Text = "Accelerometer Data";
-            // 
-            // lblNunchuckAccelerometers
-            // 
-            this.lblNunchuckAccelerometers.Location = new System.Drawing.Point(6, 16);
-            this.lblNunchuckAccelerometers.Name = "lblNunchuckAccelerometers";
-            this.lblNunchuckAccelerometers.Size = new System.Drawing.Size(100, 41);
-            this.lblNunchuckAccelerometers.TabIndex = 0;
-            this.lblNunchuckAccelerometers.Text = "Accelerometer Data";
-            // 
-            // lblJoystick
-            // 
-            this.lblJoystick.Location = new System.Drawing.Point(6, 16);
-            this.lblJoystick.Name = "lblJoystick";
-            this.lblJoystick.Size = new System.Drawing.Size(100, 31);
-            this.lblJoystick.TabIndex = 0;
-            this.lblJoystick.Text = "Joystick Values";
-            // 
             // gbDevicePath
             // 
             this.gbDevicePath.Controls.Add(this.txtDevicePath);
-            this.gbDevicePath.Location = new System.Drawing.Point(14, 386);
+            this.gbDevicePath.Location = new System.Drawing.Point(14, 369);
             this.gbDevicePath.Name = "gbDevicePath";
             this.gbDevicePath.Size = new System.Drawing.Size(225, 47);
             this.gbDevicePath.TabIndex = 9;
@@ -201,7 +254,8 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
-            this.helpToolStripMenuItem});
+            this.helpToolStripMenuItem,
+            this.helpToolStripMenuItem1});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(255, 24);
@@ -216,9 +270,25 @@
             // 
             // helpToolStripMenuItem
             // 
+            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.optionsToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
-            this.helpToolStripMenuItem.Text = "Help";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
+            this.helpToolStripMenuItem.Text = "Tools";
+            // 
+            // optionsToolStripMenuItem
+            // 
+            this.optionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuDecimalPlaces});
+            this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
+            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.optionsToolStripMenuItem.Text = "Options";
+            // 
+            // helpToolStripMenuItem1
+            // 
+            this.helpToolStripMenuItem1.Name = "helpToolStripMenuItem1";
+            this.helpToolStripMenuItem1.Size = new System.Drawing.Size(44, 20);
+            this.helpToolStripMenuItem1.Text = "Help";
             // 
             // statusStrip1
             // 
@@ -226,7 +296,7 @@
             this.tblblBattery,
             this.tbpbBattery,
             this.tblblBatteryPercent});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 448);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 431);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(255, 22);
             this.statusStrip1.TabIndex = 11;
@@ -245,15 +315,36 @@
             // 
             // tblblBatteryPercent
             // 
+            this.tblblBatteryPercent.AutoSize = false;
             this.tblblBatteryPercent.Name = "tblblBatteryPercent";
             this.tblblBatteryPercent.Size = new System.Drawing.Size(47, 17);
             this.tblblBatteryPercent.Text = "Percent";
+            // 
+            // menuDecimalPlaces
+            // 
+            this.menuDecimalPlaces.AutoToolTip = true;
+            this.menuDecimalPlaces.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.menuDecimalPlaces.Items.AddRange(new object[] {
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9"});
+            this.menuDecimalPlaces.Name = "menuDecimalPlaces";
+            this.menuDecimalPlaces.Size = new System.Drawing.Size(121, 23);
+            this.menuDecimalPlaces.ToolTipText = "Decimal Places";
+            this.menuDecimalPlaces.SelectedIndexChanged += new System.EventHandler(this.menuDecimalPlaces_SelectedIndexChanged);
             // 
             // frmWiiInterface
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(255, 470);
+            this.ClientSize = new System.Drawing.Size(255, 453);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.gbDevicePath);
             this.Controls.Add(this.gbNunchuck);
@@ -263,11 +354,11 @@
             this.Text = "Wii Interface";
             this.Load += new System.EventHandler(this.frmWiiInterface_Load);
             this.gbWiimote.ResumeLayout(false);
+            this.gbWiimoteAccelerometers.ResumeLayout(false);
             this.gbNunchuck.ResumeLayout(false);
             this.gbNunchuck.PerformLayout();
-            this.gbWiimoteAccelerometers.ResumeLayout(false);
-            this.gbNunchuckAccelerometers.ResumeLayout(false);
             this.gbJoysticks.ResumeLayout(false);
+            this.gbNunchuckAccelerometers.ResumeLayout(false);
             this.gbDevicePath.ResumeLayout(false);
             this.gbDevicePath.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
@@ -289,9 +380,7 @@
         private System.Windows.Forms.GroupBox gbWiimoteAccelerometers;
         private System.Windows.Forms.GroupBox gbJoysticks;
         private System.Windows.Forms.GroupBox gbNunchuckAccelerometers;
-        private System.Windows.Forms.Label lblWiimoteAccelerometers;
-        private System.Windows.Forms.Label lblNunchuckAccelerometers;
-        private System.Windows.Forms.Label lblJoystick;
+        private System.Windows.Forms.Label lblWiimoteX;
         private System.Windows.Forms.GroupBox gbDevicePath;
         private System.Windows.Forms.TextBox txtDevicePath;
         private System.Windows.Forms.MenuStrip menuStrip1;
@@ -301,6 +390,16 @@
         private System.Windows.Forms.ToolStripStatusLabel tblblBattery;
         private System.Windows.Forms.ToolStripProgressBar tbpbBattery;
         private System.Windows.Forms.ToolStripStatusLabel tblblBatteryPercent;
+        private System.Windows.Forms.Label lblWiimoteZ;
+        private System.Windows.Forms.Label lblWiimoteY;
+        private System.Windows.Forms.Label lblNunJoyY;
+        private System.Windows.Forms.Label lblNunJoyX;
+        private System.Windows.Forms.Label lblNunchuckZ;
+        private System.Windows.Forms.Label lblNunchuckY;
+        private System.Windows.Forms.Label lblNunchuckX;
+        private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripComboBox menuDecimalPlaces;
     }
 }
 
