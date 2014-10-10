@@ -1,0 +1,10 @@
+C:\Users\Owner\Documents\GitHub\Wii Interface\Wii Interface\bin\Debug\Wii Interface.exe.config
+C:\Users\Owner\Documents\GitHub\Wii Interface\Wii Interface\bin\Debug\Wii Interface.exe
+C:\Users\Owner\Documents\GitHub\Wii Interface\Wii Interface\bin\Debug\Wii Interface.pdb
+C:\Users\Owner\Documents\GitHub\Wii Interface\Wii Interface\bin\Debug\WiimoteLib.dll
+C:\Users\Owner\Documents\GitHub\Wii Interface\Wii Interface\obj\Debug\Wii Interface.csprojResolveAssemblyReference.cache
+C:\Users\Owner\Documents\GitHub\Wii Interface\Wii Interface\obj\Debug\Wii_Interface.frmWiiInterface.resources
+C:\Users\Owner\Documents\GitHub\Wii Interface\Wii Interface\obj\Debug\Wii_Interface.Properties.Resources.resources
+C:\Users\Owner\Documents\GitHub\Wii Interface\Wii Interface\obj\Debug\Wii Interface.csproj.GenerateResource.Cache
+C:\Users\Owner\Documents\GitHub\Wii Interface\Wii Interface\obj\Debug\Wii Interface.exe
+C:\Users\Owner\Documents\GitHub\Wii Interface\Wii Interface\obj\Debug\Wii Interface.pdb
