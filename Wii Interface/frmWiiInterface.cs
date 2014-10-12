@@ -8,6 +8,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,6 +22,10 @@ namespace Wii_Interface
         // Delegates for updated remote status events
         private delegate void UpdateWiimoteStateDelegate(WiimoteChangedEventArgs args);
         private delegate void UpdateExtensionChangedDelegate(WiimoteExtensionChangedEventArgs args);
+
+        // For the IR stats
+        private Bitmap b = new Bitmap(256, 192, PixelFormat.Format24bppRgb);
+        private Graphics g;
 
         // Creates the Wii remote
         private Wiimote wiimote;
@@ -155,6 +160,34 @@ namespace Wii_Interface
             tbpbBattery.Value = (wiimoteState.Battery > 0xc8 ? 0xc8 : (int)wiimoteState.Battery);
             // Displays the battery level as a decimal between 0.0 and 1.0
             tblblBatteryPercent.Text = Decimal.Round((decimal)wiimoteState.Battery, decimalPoints).ToString();
+        }
+
+        private void checkIRStats(WiimoteState wiimoteState)
+        {
+            g.Clear(Color.Black);
+
+            UpdateIR(wiimoteState.IRState.IRSensors[0], lblIR1, lblIR1Raw, chkFound1, Color.Red);
+            UpdateIR(wiimoteState.IRState.IRSensors[1], lblIR2, lblIR2Raw, chkFound2, Color.Blue);
+            UpdateIR(wiimoteState.IRState.IRSensors[2], lblIR3, lblIR3Raw, chkFound3, Color.Yellow);
+            UpdateIR(wiimoteState.IRState.IRSensors[3], lblIR4, lblIR4Raw, chkFound4, Color.Orange);
+
+            if (wiimoteState.IRState.IRSensors[0].Found && wiimoteState.IRState.IRSensors[1].Found)
+                g.DrawEllipse(new Pen(Color.Green), (int)(wiimoteState.IRState.RawMidpoint.X / 4), (int)(wiimoteState.IRState.RawMidpoint.Y / 4), 2, 2);
+
+            pbIR.Image = b;
+        }
+
+        private void UpdateIR(IRSensor irSensor, Label lblNorm, Label lblRaw, CheckBox chkFound, Color color)
+        {
+            chkFound.Checked = irSensor.Found;
+
+            if (irSensor.Found)
+            {
+                lblNorm.Text = irSensor.Position.ToString() + ", " + irSensor.Size;
+                lblRaw.Text = irSensor.RawPosition.ToString();
+                g.DrawEllipse(new Pen(color), (int)(irSensor.RawPosition.X / 4), (int)(irSensor.RawPosition.Y / 4),
+                             irSensor.Size + 1, irSensor.Size + 1);
+            }
         }
 
         // Disconnects the remote from the program if the form closes
