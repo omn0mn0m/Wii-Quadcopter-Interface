@@ -15,6 +15,10 @@
         {
             if (disposing && (components != null))
             {
+                speechSynthesiser.Dispose();
+                wiimote.Dispose();
+                speechRecognition.Dispose();
+                b.Dispose();
                 components.Dispose();
             }
             base.Dispose(disposing);
@@ -48,6 +52,7 @@
             this.txtDevicePath = new System.Windows.Forms.TextBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.disconnectWiimoteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuDecimalPlaces = new System.Windows.Forms.ToolStripComboBox();
@@ -57,7 +62,6 @@
             this.tbpbBattery = new System.Windows.Forms.ToolStripProgressBar();
             this.tblblBatteryPercent = new System.Windows.Forms.ToolStripStatusLabel();
             this.gbIRPositioning = new System.Windows.Forms.GroupBox();
-            this.pbIR = new System.Windows.Forms.PictureBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.lblIR3Raw = new System.Windows.Forms.Label();
             this.lblIR1Raw = new System.Windows.Forms.Label();
@@ -71,7 +75,22 @@
             this.chkFound4 = new System.Windows.Forms.CheckBox();
             this.chkFound1 = new System.Windows.Forms.CheckBox();
             this.chkFound2 = new System.Windows.Forms.CheckBox();
-            this.disconnectWiimoteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pbIR = new System.Windows.Forms.PictureBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtDemoZ = new System.Windows.Forms.TextBox();
+            this.txtDemoY = new System.Windows.Forms.TextBox();
+            this.txtDemoX = new System.Windows.Forms.TextBox();
+            this.btnInput = new System.Windows.Forms.Button();
+            this.txtInput = new System.Windows.Forms.TextBox();
+            this.txtOutput = new System.Windows.Forms.TextBox();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.cbDisableSpeech = new System.Windows.Forms.CheckBox();
+            this.cbDisableRecognition = new System.Windows.Forms.CheckBox();
             this.gbWiimote.SuspendLayout();
             this.gbWiimoteAccelerometers.SuspendLayout();
             this.gbNunchuck.SuspendLayout();
@@ -81,12 +100,16 @@
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.gbIRPositioning.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbIR)).BeginInit();
             this.groupBox5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbIR)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // clbWiimote
             // 
+            this.clbWiimote.BackColor = System.Drawing.SystemColors.ControlDark;
             this.clbWiimote.FormattingEnabled = true;
             this.clbWiimote.Items.AddRange(new object[] {
             "A",
@@ -109,9 +132,10 @@
             // 
             this.gbWiimote.Controls.Add(this.gbWiimoteAccelerometers);
             this.gbWiimote.Controls.Add(this.clbWiimote);
-            this.gbWiimote.Location = new System.Drawing.Point(14, 27);
+            this.gbWiimote.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gbWiimote.Location = new System.Drawing.Point(3, 3);
             this.gbWiimote.Name = "gbWiimote";
-            this.gbWiimote.Size = new System.Drawing.Size(225, 194);
+            this.gbWiimote.Size = new System.Drawing.Size(237, 205);
             this.gbWiimote.TabIndex = 1;
             this.gbWiimote.TabStop = false;
             this.gbWiimote.Text = "Wiimote";
@@ -158,9 +182,10 @@
             this.gbNunchuck.Controls.Add(this.gbNunchuckAccelerometers);
             this.gbNunchuck.Controls.Add(this.clbNunchuck);
             this.gbNunchuck.Controls.Add(this.cbEnabled);
-            this.gbNunchuck.Location = new System.Drawing.Point(14, 227);
+            this.gbNunchuck.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gbNunchuck.Location = new System.Drawing.Point(3, 214);
             this.gbNunchuck.Name = "gbNunchuck";
-            this.gbNunchuck.Size = new System.Drawing.Size(225, 136);
+            this.gbNunchuck.Size = new System.Drawing.Size(237, 145);
             this.gbNunchuck.TabIndex = 2;
             this.gbNunchuck.TabStop = false;
             this.gbNunchuck.Text = "Nunchuck";
@@ -230,6 +255,7 @@
             // 
             // clbNunchuck
             // 
+            this.clbNunchuck.BackColor = System.Drawing.SystemColors.ControlDark;
             this.clbNunchuck.FormattingEnabled = true;
             this.clbNunchuck.Items.AddRange(new object[] {
             "C",
@@ -253,15 +279,17 @@
             // gbDevicePath
             // 
             this.gbDevicePath.Controls.Add(this.txtDevicePath);
-            this.gbDevicePath.Location = new System.Drawing.Point(14, 369);
+            this.gbDevicePath.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gbDevicePath.Location = new System.Drawing.Point(3, 365);
             this.gbDevicePath.Name = "gbDevicePath";
-            this.gbDevicePath.Size = new System.Drawing.Size(225, 47);
+            this.gbDevicePath.Size = new System.Drawing.Size(237, 47);
             this.gbDevicePath.TabIndex = 9;
             this.gbDevicePath.TabStop = false;
             this.gbDevicePath.Text = "Device Path";
             // 
             // txtDevicePath
             // 
+            this.txtDevicePath.BackColor = System.Drawing.SystemColors.ControlDark;
             this.txtDevicePath.Location = new System.Drawing.Point(6, 19);
             this.txtDevicePath.Name = "txtDevicePath";
             this.txtDevicePath.ReadOnly = true;
@@ -277,7 +305,7 @@
             this.helpToolStripMenuItem1});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(565, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1037, 24);
             this.menuStrip1.TabIndex = 10;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -288,6 +316,12 @@
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
+            // 
+            // disconnectWiimoteToolStripMenuItem
+            // 
+            this.disconnectWiimoteToolStripMenuItem.Name = "disconnectWiimoteToolStripMenuItem";
+            this.disconnectWiimoteToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.disconnectWiimoteToolStripMenuItem.Text = "Disconnect Wiimote";
             // 
             // helpToolStripMenuItem
             // 
@@ -337,14 +371,15 @@
             this.tblblBattery,
             this.tbpbBattery,
             this.tblblBatteryPercent});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 431);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 445);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(565, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1037, 22);
             this.statusStrip1.TabIndex = 11;
             this.statusStrip1.Text = "statusStrip1";
             // 
             // tblblBattery
             // 
+            this.tblblBattery.BackColor = System.Drawing.Color.Transparent;
             this.tblblBattery.Name = "tblblBattery";
             this.tblblBattery.Size = new System.Drawing.Size(92, 17);
             this.tblblBattery.Text = "Wiimote Battery";
@@ -357,6 +392,7 @@
             // tblblBatteryPercent
             // 
             this.tblblBatteryPercent.AutoSize = false;
+            this.tblblBatteryPercent.BackColor = System.Drawing.Color.Transparent;
             this.tblblBatteryPercent.Name = "tblblBatteryPercent";
             this.tblblBatteryPercent.Size = new System.Drawing.Size(47, 17);
             this.tblblBatteryPercent.Text = "Percent";
@@ -365,20 +401,13 @@
             // 
             this.gbIRPositioning.Controls.Add(this.groupBox5);
             this.gbIRPositioning.Controls.Add(this.pbIR);
-            this.gbIRPositioning.Location = new System.Drawing.Point(258, 37);
+            this.gbIRPositioning.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gbIRPositioning.Location = new System.Drawing.Point(252, 3);
             this.gbIRPositioning.Name = "gbIRPositioning";
-            this.gbIRPositioning.Size = new System.Drawing.Size(295, 379);
+            this.gbIRPositioning.Size = new System.Drawing.Size(313, 415);
             this.gbIRPositioning.TabIndex = 12;
             this.gbIRPositioning.TabStop = false;
             this.gbIRPositioning.Text = "IR Positioning";
-            // 
-            // pbIR
-            // 
-            this.pbIR.Location = new System.Drawing.Point(6, 19);
-            this.pbIR.Name = "pbIR";
-            this.pbIR.Size = new System.Drawing.Size(283, 159);
-            this.pbIR.TabIndex = 0;
-            this.pbIR.TabStop = false;
             // 
             // groupBox5
             // 
@@ -394,9 +423,10 @@
             this.groupBox5.Controls.Add(this.chkFound4);
             this.groupBox5.Controls.Add(this.chkFound1);
             this.groupBox5.Controls.Add(this.chkFound2);
-            this.groupBox5.Location = new System.Drawing.Point(6, 184);
+            this.groupBox5.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.groupBox5.Location = new System.Drawing.Point(3, 224);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(283, 188);
+            this.groupBox5.Size = new System.Drawing.Size(307, 188);
             this.groupBox5.TabIndex = 35;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "IR Coordinates";
@@ -513,22 +543,186 @@
             this.chkFound2.Text = "IR 2";
             this.chkFound2.UseVisualStyleBackColor = true;
             // 
-            // disconnectWiimoteToolStripMenuItem
+            // pbIR
             // 
-            this.disconnectWiimoteToolStripMenuItem.Name = "disconnectWiimoteToolStripMenuItem";
-            this.disconnectWiimoteToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
-            this.disconnectWiimoteToolStripMenuItem.Text = "Disconnect Wiimote";
+            this.pbIR.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pbIR.Location = new System.Drawing.Point(3, 16);
+            this.pbIR.Name = "pbIR";
+            this.pbIR.Size = new System.Drawing.Size(307, 159);
+            this.pbIR.TabIndex = 0;
+            this.pbIR.TabStop = false;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.cbDisableRecognition);
+            this.groupBox1.Controls.Add(this.cbDisableSpeech);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.txtDemoZ);
+            this.groupBox1.Controls.Add(this.txtDemoY);
+            this.groupBox1.Controls.Add(this.txtDemoX);
+            this.groupBox1.Controls.Add(this.btnInput);
+            this.groupBox1.Controls.Add(this.txtInput);
+            this.groupBox1.Controls.Add(this.txtOutput);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox1.Location = new System.Drawing.Point(571, 3);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(463, 415);
+            this.groupBox1.TabIndex = 13;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Voice Control";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(286, 354);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(17, 13);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "Z:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(147, 354);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(17, 13);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "Y:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 354);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(17, 13);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "X:";
+            // 
+            // txtDemoZ
+            // 
+            this.txtDemoZ.Location = new System.Drawing.Point(309, 351);
+            this.txtDemoZ.Name = "txtDemoZ";
+            this.txtDemoZ.ReadOnly = true;
+            this.txtDemoZ.Size = new System.Drawing.Size(100, 20);
+            this.txtDemoZ.TabIndex = 5;
+            this.txtDemoZ.Text = "0";
+            // 
+            // txtDemoY
+            // 
+            this.txtDemoY.Location = new System.Drawing.Point(170, 351);
+            this.txtDemoY.Name = "txtDemoY";
+            this.txtDemoY.ReadOnly = true;
+            this.txtDemoY.Size = new System.Drawing.Size(100, 20);
+            this.txtDemoY.TabIndex = 4;
+            this.txtDemoY.Text = "0";
+            // 
+            // txtDemoX
+            // 
+            this.txtDemoX.Location = new System.Drawing.Point(29, 350);
+            this.txtDemoX.Name = "txtDemoX";
+            this.txtDemoX.ReadOnly = true;
+            this.txtDemoX.Size = new System.Drawing.Size(100, 20);
+            this.txtDemoX.TabIndex = 3;
+            this.txtDemoX.Text = "0";
+            // 
+            // btnInput
+            // 
+            this.btnInput.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnInput.Location = new System.Drawing.Point(375, 320);
+            this.btnInput.Name = "btnInput";
+            this.btnInput.Size = new System.Drawing.Size(75, 23);
+            this.btnInput.TabIndex = 2;
+            this.btnInput.Text = "Input";
+            this.btnInput.UseVisualStyleBackColor = true;
+            this.btnInput.Click += new System.EventHandler(this.btnInput_Click);
+            // 
+            // txtInput
+            // 
+            this.txtInput.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.txtInput.Location = new System.Drawing.Point(6, 320);
+            this.txtInput.Name = "txtInput";
+            this.txtInput.Size = new System.Drawing.Size(363, 20);
+            this.txtInput.TabIndex = 1;
+            // 
+            // txtOutput
+            // 
+            this.txtOutput.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.txtOutput.Dock = System.Windows.Forms.DockStyle.Top;
+            this.txtOutput.Location = new System.Drawing.Point(3, 16);
+            this.txtOutput.Multiline = true;
+            this.txtOutput.Name = "txtOutput";
+            this.txtOutput.ReadOnly = true;
+            this.txtOutput.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtOutput.Size = new System.Drawing.Size(457, 297);
+            this.txtOutput.TabIndex = 0;
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 3;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 43.91144F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 56.08856F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 468F));
+            this.tableLayoutPanel1.Controls.Add(this.gbIRPositioning, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.groupBox1, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 24);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1037, 421);
+            this.tableLayoutPanel1.TabIndex = 2;
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.ColumnCount = 1;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.Controls.Add(this.gbWiimote, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.gbNunchuck, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.gbDevicePath, 0, 2);
+            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 3;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 58.3815F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 41.6185F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(243, 415);
+            this.tableLayoutPanel2.TabIndex = 14;
+            // 
+            // cbDisableSpeech
+            // 
+            this.cbDisableSpeech.AutoSize = true;
+            this.cbDisableSpeech.Location = new System.Drawing.Point(6, 386);
+            this.cbDisableSpeech.Name = "cbDisableSpeech";
+            this.cbDisableSpeech.Size = new System.Drawing.Size(149, 17);
+            this.cbDisableSpeech.TabIndex = 9;
+            this.cbDisableSpeech.Text = "Disable Speech Synthesis";
+            this.cbDisableSpeech.UseVisualStyleBackColor = true;
+            this.cbDisableSpeech.CheckedChanged += new System.EventHandler(this.cbDisableSpeech_CheckedChanged);
+            // 
+            // cbDisableRecognition
+            // 
+            this.cbDisableRecognition.AutoSize = true;
+            this.cbDisableRecognition.Location = new System.Drawing.Point(161, 386);
+            this.cbDisableRecognition.Name = "cbDisableRecognition";
+            this.cbDisableRecognition.Size = new System.Drawing.Size(161, 17);
+            this.cbDisableRecognition.TabIndex = 10;
+            this.cbDisableRecognition.Text = "Disable Speech Recognition";
+            this.cbDisableRecognition.UseVisualStyleBackColor = true;
+            this.cbDisableRecognition.CheckedChanged += new System.EventHandler(this.cbDisableRecognition_CheckedChanged);
             // 
             // frmWiiInterface
             // 
+            this.AcceptButton = this.btnInput;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(565, 453);
-            this.Controls.Add(this.gbIRPositioning);
+            this.BackColor = System.Drawing.Color.LightCoral;
+            this.ClientSize = new System.Drawing.Size(1037, 467);
+            this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.statusStrip1);
-            this.Controls.Add(this.gbDevicePath);
-            this.Controls.Add(this.gbNunchuck);
-            this.Controls.Add(this.gbWiimote);
             this.Controls.Add(this.menuStrip1);
             this.Name = "frmWiiInterface";
             this.Text = "Wii Interface";
@@ -546,9 +740,13 @@
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.gbIRPositioning.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pbIR)).EndInit();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbIR)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -600,6 +798,21 @@
         public System.Windows.Forms.CheckBox chkFound1;
         public System.Windows.Forms.CheckBox chkFound2;
         private System.Windows.Forms.PictureBox pbIR;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.TextBox txtInput;
+        private System.Windows.Forms.TextBox txtOutput;
+        private System.Windows.Forms.Button btnInput;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtDemoZ;
+        private System.Windows.Forms.TextBox txtDemoY;
+        private System.Windows.Forms.TextBox txtDemoX;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.CheckBox cbDisableRecognition;
+        private System.Windows.Forms.CheckBox cbDisableSpeech;
     }
 }
 
